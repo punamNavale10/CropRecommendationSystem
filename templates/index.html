@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ar" dir="">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <title>Crop Recommendation System</title>
+  </head>
+
+   <style>
+		h1 {
+			color: mediumseagreen;
+			text-align: center;
+		}
+
+		.warning {
+			color: red;
+			font-weight: bold;
+			text-align: center;
+		}
+		.card{
+		margin-left:530px;
+		margin-top: 20px;
+		color: white;
+		}
+		.container{
+		background:#edf2f7;
+		font-weight: bold;
+		padding-bottom:10px;
+		border-radius: 15px;
+		}
+	</style>
+
+
+
+
+  <body style="background:#BCBBB4">
+<!----------------------------------------------------------------------------------------------------------------------->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Crop Recommendation</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">About</a>
+        </li>
+      </ul>
+      <form class="d-flex ml-2" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success ml-2" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!----------------------------------------------------------------------------------------------------------------------->
+    <div class="container mt-4">
+        <h1 class="text-success">
+            Crop Recommendation System <span class="success">🌱</span>
+        </h1>
+
+<!--        adding  form-->
+        <form action="/predict" method="POST">
+            <div class="row mt-4">
+            <div class="col-md-4">
+                <label for="Nitrogen">Nitrogen</label>
+                <input type="number" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen" class="form-control"    >
+
+            </div>
+            <div class="col-md-4">
+                <label for="Phosphorus">Phosphorus</label>
+                <input type="number" id="Phosphorus" name="Phosphorus" placeholder="Enter Phosphorus" class="form-control"    >
+
+            </div>
+            <div class="col-md-4">
+                <label for="Potassium">Potassium</label>
+                <input type="number" id="Potassium" name="Potassium" placeholder="Enter Potassium" class="form-control"    >
+
+            </div>
+            </div>
+              <div class="row mt-4">
+            <div class="col-md-4">
+                <label for="Temprature">Temprature</label>
+                <input type="number" id="Temprature" name="Temprature" placeholder="Enter Temprature" class="form-control"    >
+
+            </div>
+            <div class="col-md-4">
+                <label for="Humidity">Humidity</label>
+                <input type="number" id="Humidity" name="Humidity" placeholder="Enter Humidity" class="form-control"    >
+
+            </div>
+            <div class="col-md-4">
+                <label for="pH">pH</label>
+                <input type="number" id="pH" name="pH" placeholder="Enter pH" class="form-control"    >
+
+            </div>
+            </div>
+
+            <div class="row mt-4">
+            <div class="col-md-4">
+                <label for="Rainfall">Rainfall</label>
+                <input type="number" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall" class="form-control"    >
+
+            </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Get Recommendation</button>
+                </div>
+            </div>
+        </form>
+
+        {% if result %}
+            <div class="card bg-dark" style="width: 15rem;">
+		  <img src="{{url_for('static', filename='img.jpg')}}" class="card-img-top" alt="...">
+		  <div class="card-body">
+			<h5 class="card-title">Recommend Crop for cultivation is:</h5>
+			<p class="card-text">{{ result }}</p>
+		  </div>
+		</div>
+        {% endif %}
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
